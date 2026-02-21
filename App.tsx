@@ -280,9 +280,6 @@ const App: React.FC = () => {
                       <p className="text-white text-sm md:text-base font-medium tracking-wide">
                         {place.name}
                       </p>
-                      <div className="flex items-center gap-2 text-[8px] uppercase tracking-[0.4em] font-bold text-gold mt-4 opacity-0 group-hover:opacity-100 transition-all">
-                        View Records <ChevronRight size={12} />
-                      </div>
                     </div>
                   </motion.div>
                 ))}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THIPUZU — Sacred Hills</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0A0A0A',
+                        gold: '#C5A059',
+                        bone: '#F2F0E9',
+                        luxury: 'rgba(197, 160, 89, 0.2)',
+                        // Light mode premium colors - deeper, richer shades for 3D effect
+                        premiumBlue: '#42A5F5',
+                        premiumYellow: '#FFCA28',
+                        premiumPink: '#EC407A',
+                        premiumGreen: '#66BB6A',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0A0A0A;
+            --text-color: #F2F0E9;
+            --gold: #C5A059;
+            --card-border: rgba(197, 160, 89, 0.2);
+            --section-bg: #0A0A0A;
+            --nav-bg: rgba(10, 10, 10, 0.95);
+        }
+
+        body.light-mode {
+            --bg-color: #F8F7F2;
+            --text-color: #1A1A1A;
+            --gold: #A67C00;
+            --card-border: rgba(166, 124, 0, 0.15);
+            --section-bg: #FFFFFF;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .heading-big {
+            font-family: 'Anton', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.4;
+        }
+
+        /* Expensive Grain Overlay */
+        .noise::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .light-mode .noise::before {
+            opacity: 0.02;
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: white;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .mask-text {
+            display: inline-block;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(
+                135deg,
+                var(--text-color) 25%,
+                var(--gold) 40%,
+                #ffffff 50%,
+                var(--gold) 60%,
+                var(--text-color) 75%
+            );
+            background-size: 300% auto;
+            animation: radiantFlux 10s ease-in-out infinite;
+            padding: 0.1em 0;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .light-mode .mask-text {
+            background-image: linear-gradient(
+                135deg,
+                #1A1A1A 25%,
+                #A67C00 40%,
+                #1A1A1A 50%,
+                #A67C00 60%,
+                #1A1A1A 75%
+            );
+        }
+
+        @keyframes radiantFlux {
+            0% { background-position: 100% 50%; }
+            50% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(197, 160, 89, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(197, 160, 89, 0.03) 1px, transparent 1px);
+        }
+
+        .light-mode .grid-bg {
+            background-image: linear-gradient(to right, rgba(166, 124, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(166, 124, 0, 0.05) 1px, transparent 1px);
+        }
+
+        /* Light Mode Premium Solid Colors - Enhanced with 3D Depth and Shine */
+        .light-mode .card-blue { 
+            background-color: #42A5F5 !important; 
+            color: #ffffff !important; 
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 20px 35px -10px rgba(66, 165, 245, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -4px 8px rgba(0, 0, 0, 0.15) !important;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%) !important;
+        }
+        .light-mode .card-yellow { 
+            background-color: #FFCA28 !important; 
+            color: #4E342E !important; 
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 20px 35px -10px rgba(255, 202, 40, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.7), inset 0 -4px 8px rgba(0, 0, 0, 0.1) !important;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%) !important;
+        }
+        .light-mode .card-pink { 
+            background-color: #EC407A !important; 
+            color: #ffffff !important; 
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 20px 35px -10px rgba(236, 64, 122, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -4px 8px rgba(0, 0, 0, 0.15) !important;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%) !important;
+        }
+        .light-mode .card-green { 
+            background-color: #66BB6A !important; 
+            color: #ffffff !important; 
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 20px 35px -10px rgba(102, 187, 106, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -4px 8px rgba(0, 0, 0, 0.15) !important;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%) !important;
+        }
+
+        /* Hover States for 3D Pop and FIXED title visibility */
+        .light-mode .card-blue:hover, 
+        .light-mode .card-yellow:hover, 
+        .light-mode .card-pink:hover, 
+        .light-mode .card-green:hover { 
+            transform: translateY(-12px) scale(1.02); 
+            filter: brightness(1.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Ensuring text inside cards stays highly visible and 'shines' on hover */
+        .light-mode .card-blue:hover .mask-text,
+        .light-mode .card-pink:hover .mask-text,
+        .light-mode .card-green:hover .mask-text {
+            background-image: linear-gradient(135deg, #ffffff 0%, #E3F2FD 40%, #ffffff 50%, #E3F2FD 60%, #ffffff 100%) !important;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .light-mode .card-yellow:hover .mask-text {
+            background-image: linear-gradient(135deg, #4E342E 0%, #A67C00 40%, #4E342E 50%, #A67C00 60%, #4E342E 100%) !important;
+        }
+
+        .light-mode .card-blue:hover { box-shadow: 0 30px 60px -12px rgba(66, 165, 245, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.8) !important; }
+        .light-mode .card-yellow:hover { box-shadow: 0 30px 60px -12px rgba(255, 202, 40, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.9) !important; }
+        .light-mode .card-pink:hover { box-shadow: 0 30px 60px -12px rgba(236, 64, 122, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.8) !important; }
+        .light-mode .card-green:hover { box-shadow: 0 30px 60px -12px rgba(102, 187, 106, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.8) !important; }
+
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+        "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+        "framer-motion": "https://esm.sh/framer-motion@^12.33.0"
+      }
+    }
+    </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="noise grid-bg light-mode">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

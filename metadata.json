@@ -1,0 +1,7 @@
+{
+  "name": "The Thipuzu Village - Sacred Hills Modernism",
+  "description": "A premium digital museum and travel promotion platform for Thipuzu Village, Nagaland, featuring cultural heritage, faith history, and community development with a modern architectural aesthetic.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

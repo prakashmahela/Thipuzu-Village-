@@ -1,29 +1,36 @@
 export const SECTIONS = [
-  { id: 'about', label: 'Origins' },
+  { id: 'about', label: 'About' },
+  { id: 'tom', label: 'Mission' },
   { id: 'tourism', label: 'Journey' },
   { id: 'faith', label: 'Covenant' },
-  { id: 'culture', label: 'Culture' },
+  { id: 'culture', label: 'Festivals' },
   { id: 'education', label: 'Education' },
   { id: 'development', label: 'Growth' },
   { id: 'demographics', label: 'Community' },
+  { id: 'gallery', label: 'Gallery' },
   { id: 'places', label: 'Landmarks' },
+  { id: 'must-visit', label: 'Must Visit' },
 ];
 
 export const CONTENT_DATA: any = {
   about: {
-    title: "Origins: The XV Generation Records",
+    title: "About Thipüzu",
     sections: [
       {
-        head: "The Makhel Migration & The Descent of the Chokri",
-        body: "The genesis of Thipuzu Village is inextricably linked to the primordial migration from Makhel, the sacred ground from which all Naga tribes are said to have dispersed. Centuries ago, the ancestors of the Chokri-speaking people tracked the movement of the mountain winds and the clarity of the springs until they reached the specific ridge that now defines Thipuzu. This founding era established the 'First Law of the Ridge,' a communal agreement that prioritized collective defense and the preservation of the forest canopy above all else. The very name of the village echoes with the ancient Chokri roots that signify 'The Sentinel of the High Clouds,' a title earned through five centuries of unbroken occupation. Oral historians recount that the first fire-pit was dug by the five founding patriarchs using only stones from the nearby river, symbolizing a bond with the earth that remains unbroken to this day. This migration wasn't merely a movement of people but a transport of values, ensuring that the communal spirit of the Chakhesang would thrive in isolation."
+        head: "Historical Background",
+        body: "Thipüzu village has a rich and meaningful history. The term “Thipüzu” refers to the village itself, while “Thipüzumi” denotes the people of the village. According to oral tradition, the founding fathers of Thipüzu migrated from neighbouring villages in search of a new settlement site, likely during the 17th century. Before their arrival, the present location was a dense and luxuriant woodland, abundant with birds and wildlife, untouched by regular human habitation. It is narrated that the early settlers tested the land by striking the ground with their staffs to determine whether it was “masculine” or “feminine.” After exploring several areas, they identified the present site as suitable for settlement. Though relatively small in size, it was chosen for three important reasons: Masculinity (Thepu) – believed to grant courage, strength, and warrior-like qualities to its inhabitants. Fertility (Batso) – associated with prosperity, productive land, abundant hunting grounds, and population growth. Strategic Location – the elevated and hilly terrain provided natural vantage points to detect enemy movement and defend the village from invasion. With these favorable characteristics combined, the founders established what is now known as Thipüzu village."
       },
       {
-        head: "Megalithic Jurisprudence: The Standing Stones",
-        body: "History in Thipuzu is literally set in stone. The village landscape is punctuated by massive megaliths, or 'Kehelu,' which serve as the village's primary legal and historical archives. These stones were not erected for decorative purposes; they were the physical witnesses to peace treaties, boundary settlements, and tribal covenants. When a significant law was enacted or a feud resolved, the elders would gather to 'speak the truth into the stone.' This process, known as Megalithic Jurisprudence, ensured that justice was as permanent as the geology of the hills. Each stone carries a name and a story, representing a generation that faced survival challenges and emerged with a deeper understanding of social order. To touch these stones is to touch a legal document hundreds of years old, cold to the hand but alive with the gravity of ancient oaths. The placement of these stones often aligns with celestial patterns, suggesting an advanced understanding of the stars among the early settlers."
+        head: "The Village at Present",
+        body: "Thipüzumi belong to the Chokri subgroup of the larger Chakhesang Naga tribe, one of the recognized Naga tribes of Nagaland."
       },
       {
-        head: "The Sentinel of the Phek Ridge",
-        body: "Positioned at a strategic elevation of 1,800 meters, Thipuzu was engineered by our ancestors to be a naturally fortified citadel. The ridge offers a 360-degree vantage point over the Phek mountains, allowing for the early detection of any movement in the valleys below. This geographical dominance shaped the village's identity as a 'Protector State,' where the youth were trained not just in agriculture, but in the art of terrain navigation and weather prediction. Even today, the elders can read the approaching monsoon by the specific shade of purple that takes over the western peaks—a secret knowledge passed down through fifteen generations of watchers. The ridge is more than a location; it is a philosophy of perspective, teaching the inhabitants to look beyond the immediate and plan for the long horizon."
+        head: "Location",
+        body: "Thipüzu village is beautifully situated along sloping terrain and surrounded by lofty mountains. It lies at an altitude of approximately 1,575 metres above sea level, with geographical coordinates 25.626322° N latitude and 94.268146° E longitude. The village is located about 60 km from Kohima, the capital of Nagaland, and falls under Kikruma Block in Phek District, India. Thipüzu consists of three territorial blocks (cezo): Cekümi, Metsuzo, Lupfümi. These blocks are geographical divisions rather than clan (khel) territories, as they are inhabited by an intermingling of several clans."
+      },
+      {
+        head: "Connectivity",
+        body: "Thipüzu is well connected by road. The village is linked by the NEC Road (North Eastern Council funded road), which runs across its territory. Recently, an alternative road connecting National Highway (NH-150) to the NEC Road via Thipüzu was constructed under the NLCPR (Non-Lapsable Central Pool of Resources) project. This development has significantly improved travel and transportation, opening greater opportunities for connectivity and growth."
       }
     ]
   },
@@ -160,8 +167,8 @@ export const CONTENT_DATA: any = {
     ]
   },
   culture: {
-    title: "Culture: The Fabric of Being",
-    festivals: ["Tsükrünyie (Harvest)", "Nazhü (Spring)", "Sükhrie (Winter)"],
+    title: "Festival including Religious festival Celebrations",
+    festivals: ["Sühkrünye", "Good Friday", "Christmas", "Natsimi Tüso (Childrens Day)"],
     sections: [
       {
         head: "The Semiotics of the Back-Strap Loom",
@@ -203,25 +210,12 @@ export const CONTENT_DATA: any = {
     title: "Kiwi & Allied Fruit Processing Unit",
     sections: [
       {
-        head: "Location: Thipuzu Village Perimeter",
-        body: "The Kiwi & Allied Fruit Processing Unit is situated on the outskirts of the main village, strategically positioned to receive fresh harvests from the high-altitude orchards. This facility represents the village's transition into sustainable value-addition, ensuring that the organic bounty of the hills is processed with modern standards while maintaining its natural integrity. It serves as a hub for local farmers, providing a direct link between ancestral land and the modern market."
+        head: "Administration & Capacity",
+        body: "The Unit was sanctioned by the Ministry of Micro, Small & Medium Enterprises (MSME), Gol., this unit is owned and managed by the Thipüzumi Kiwi Farming Co-operative Society. With a capacity to process 300 kgs of kiwi fruits per hour, it represents a significant leap in local industrial capability."
       },
       {
-        head: "Operational Significance",
-        body: "The unit is designed to handle the specific requirements of mountain fruits, particularly the indigenous kiwi varieties that thrive at 1,800 meters. By processing these fruits locally, the village minimizes waste and maximizes economic returns for the community. The facility operates under a communal stewardship model, where the benefits of the processing are shared among the contributing clans, reinforcing the village's commitment to collective growth and economic resilience."
-      }
-    ]
-  },
-  place_rihuba_church: {
-    title: "Rihuba Baptist Church Site",
-    sections: [
-      {
-        head: "Location: Rihuba Ridge",
-        body: "The Rihuba Baptist Church site is located on a prominent ridge overlooking the valley, serving as a spiritual sentinel for the surrounding area. This location was chosen for its historical significance as a meeting point for the early faithful who traveled between villages to share their new-found covenant. The site is characterized by its stark, clean lines and its integration into the natural rock formations of the ridge."
-      },
-      {
-        head: "Historical Context",
-        body: "This site marks a critical chapter in the expansion of the Baptist faith beyond the central village of Thipuzu. It represents the 'Spiritual Outpost' philosophy, where faith was carried to the furthest reaches of the clan territories. The site remains a place of pilgrimage for those seeking to understand the geographical spread of the 1939 covenant and the enduring strength of the communal spirit in the face of isolation."
+        head: "Products & Employment",
+        body: "It produces a range of products, including squash, juice, jam, candy/dry fruits and mineral water. The unit has trained around 20 youth, providing employment opportunities to local youth on a rotational basis, with 4-5 trained persons working daily."
       }
     ]
   },
@@ -229,51 +223,128 @@ export const CONTENT_DATA: any = {
     title: "Mini Eco-Tourism Park, Jüdü",
     sections: [
       {
-        head: "Location: Jüdü Valley Basin",
-        body: "The Mini Eco-Tourism Park is nestled in the Jüdü valley, a region known for its unique micro-climate and dense biodiversity. The park is designed as a 'Living Laboratory' where the principles of forest stewardship are put into practice. It features a network of walking paths that follow the natural contours of the land, allowing visitors to experience the forest without disturbing the delicate ecological balance."
+        head: "Amrit Sarovar & Infrastructure",
+        body: "This serene man-made lake was constructed under MGNREGA and is surrounded by four hillocks. It was adopted as one of the Amrit Sarovar lakes in April 2022 under Azadi Ka Amrit Mahotsav. The lake spans 1.2 acres and has a water storage capacity of 50 lakh litres."
       },
       {
-        head: "Conservation Ethos",
-        body: "The park is governed by the village's strict conservation laws, which prohibit the removal of any flora or fauna. It serves as a sanctuary for rare mountain orchids and serves as an educational center for the village youth to learn about their ancestral responsibility to the land. The park is a physical manifestation of the 'Growth without Scars' philosophy, showing that tourism can be a tool for preservation rather than destruction."
+        head: "Facilities & Utility",
+        body: "The park features a conference hall with a seating capacity of 50 persons, a kitchen, toilets, and a water tank. Swimming, boating, and picnic facilities are available, and there is an electricity connection up to the park. The lake also serves as a reservoir for irrigation purposes."
       }
     ]
   },
   place_horticulture: {
-    title: "Horticulture Farm, Suso-Bostu",
+    title: "Horticulture Farm, Süsabotsü",
     sections: [
       {
-        head: "Location: Suso-Bostu Slopes",
-        body: "The Horticulture Farm at Suso-Bostu occupies the sun-drenched southern slopes of the ridge, providing the ideal conditions for a wide variety of high-altitude crops. This farm is the primary site for the village's 'Trees-for-Wealth' initiative, where cardamom, kiwi, and organic tea are cultivated under the existing forest canopy. The farm is a model of Himalayan permaculture, utilizing gravity-fed irrigation and organic composting."
+        head: "Location & Landscape",
+        body: "Located east of Rihuba, this 100 acres horticulture farm is connected by an approach road and surrounded by forests, making it a paradise for nature lovers. The farm's scenic environment and suitable sites make it an ideal spot for camping during dry seasons, allowing visitors to set up tents and connect with nature."
       },
       {
-        head: "Agricultural Innovation",
-        body: "Suso-Bostu serves as a testing ground for new sustainable farming techniques that can be shared with other mountain communities. It is a place where traditional knowledge of soil health is combined with modern horticultural science to produce crops of exceptional quality. The farm is not just a site of production, but a site of learning, where the community gathers to share seeds and wisdom during the planting seasons."
+        head: "Crops & Cultivation",
+        body: "The farm grows a variety of crops, including kiwi, persimmon, avocado, peach, nectarine, apricot and vegetables. It serves as a vital hub for high-altitude horticulture in the region, combining natural beauty with productive agricultural output."
       }
     ]
   },
-  place_baptist_church: {
-    title: "Thipüzu Baptist Church",
+  place_theyeyi: {
+    title: "Theyeyi Zhetu",
     sections: [
       {
-        head: "Location: Central Village Ridge",
-        body: "The Thipüzu Baptist Church is the architectural and spiritual center of the village, located at the highest point of the central ridge. Its position ensures that it is visible from almost every part of the village, serving as a constant reminder of the 1939 covenant. The church is built on the site of the original communal gathering ground, effectively transforming a space of ancient ritual into a space of modern faith."
-      },
-      {
-        head: "Spiritual Significance",
-        body: "As the mother church of the region, it holds the primary records of the village's spiritual transformation. The interior is designed to facilitate communal singing, a core part of the Chokri worship tradition. The church is not just a building; it is the 'Hearth of the Community,' where the most important decisions regarding the village's future are made under the guidance of the social codex. It remains the most significant landmark in the village's five-hundred-year history."
+        head: "Historical Significance",
+        body: "This historic hillock is located just below Yohu Merütu, the highest peak on the range. The name Theyeyi Zhetu translates to \"the hillock where Theyeyi was killed\" during head hunting times. On 12th July 1974, the Naga Army, under the command of Col. Huchoveyi Lase shot down an Indian Army chopper injuring the pilot and the GOC. The chopper managed to reach Jakhama Army Camp, and the village of Thipüzu narrowly escaped Marshal Law being imposed for this incident. The altitude of this location is approximately 2000 metres above sea level, offering a breathtaking bird-eye view of the south and west. A 5-minute trek to this spot is a thrilling experience."
       }
     ]
   },
-  place_rihuba: {
-    title: "Rihuba",
+  place_chumevinyi: {
+    title: "Chümevinyi Peak",
     sections: [
       {
-        head: "Location: Eastern Perimeter",
-        body: "Rihuba is a significant historical area located on the eastern perimeter of the Thipuzu territory. It is characterized by its rugged terrain and its strategic importance as a gateway to the neighboring tribal lands. Historically, Rihuba served as a buffer zone and a site of diplomatic exchange between the clans. Today, it remains a vital part of the village's land-use plan, preserved for its historical and ecological value."
+        head: "Scenic Views & Trekking",
+        body: "A 10-minute trek through Rhododendron hills offers a panoramic view of virgin forests, making it a perfect spot for coffee or tea breaks and relaxation. The spot is above the Amrit Sarovar Lake Jüdü."
+      }
+    ]
+  },
+  place_rova: {
+    title: "Rova Tsüzhütu",
+    sections: [
+      {
+        head: "The Legend of Rova",
+        body: "Located above Jüdü Mini Eco-Tourism Park, Rova Tsüzhütu is a scenic spot accessible via a 3-minute trek through kiwi and persimmon farms. Legend has it that in the olden days, girls would often carry tiffins for their male peers while working in the fields. But Rova, an unattractive was shunned by the girls, who refused to carry his tiffin. One day during lunch hour, Rova came to a hillock to have food. There, while he was marking something on a big stone with his spear a hunted Stag stumbled upon him. Rova killed the stag with his spear, and his female peers offered to carry his tiffin in exchange for a share of the meat. The hillock is now aptly named \"Rova Tsüzhütu,\" meaning the hillock where Rova marked the stone."
+      }
+    ]
+  },
+  must_1: {
+    title: "Thipüzumi Baptist Church",
+    sections: [
+      {
+        head: "The Coming of Christianity (1939)",
+        body: "For nearly three centuries, the village remained rooted in its traditional beliefs. A historic turning point came in 1939 when Nepohü Kezo, along with Ciekroshuyi Epao and Hülürü Rose and their families, chose to embrace Christianity. Before taking this step, they respectfully sought the village’s response and found no opposition."
       },
       {
-        head: "Cultural Heritage",
-        body: "The area is home to several ancient monoliths that record the early boundary agreements of the founding patriarchs. Rihuba is often visited during the Tsükrünyie festival, as it is believed to be a place where the mountain spirits are particularly active. The preservation of Rihuba is a key part of the village's commitment to maintaining the integrity of its ancestral borders and the stories that define them."
+        head: "Early Faith & Practice",
+        body: "They invited Sülüho Keyho of Chozuba, a field evangelist appointed by Rev. J. E. Tanquist of the American Baptist Mission in Kohima, to guide them. After affirming their commitment, their names were recorded, and they were taught to observe six days of work and the seventh as a day of rest. Without calendars, they counted the days by bending straw stalks or gathering corn seeds to faithfully keep the Sabbath. Each Sunday, they gathered to hear the Bible read aloud, and through these humble beginnings, Christianity took root in the village."
+      },
+      {
+        head: "The First Sanctuary",
+        body: "At first, there was no church building. The early believers met around the fireplace of Hünerü Rose, who, though not yet a Christian, read and explained the Scriptures to them. As more families embraced the faith, the first small church was built at Kharüzu. With steady growth, a larger site at Rohüyi Phüdotou—the present church location—was acquired."
+      },
+      {
+        head: "Resilience & Growth",
+        body: "The early thatched church was burned down three times during difficult times, yet each time the believers rebuilt it with unwavering faith. Later, the church was reconstructed with CGI roofing, and in 1968 construction began on a larger and more modern building, completed and dedicated in 1972 through great sacrifice and unity."
+      },
+      {
+        head: "The Modern Pentagon Church",
+        body: "By 2001, as the entire village had embraced Christianity and the population increased, the need for a larger sanctuary arose once again. A new pentagon-shaped church building was approved at an estimated cost of ₹1 crore. The foundation stone was laid on 1 October 2011 by Rev. K. Rhakho, and the building was completed in December 2014."
+      },
+      {
+        head: "A Living Testimony",
+        body: "Today, Thipüzumi Baptist Church stands as a testimony to faith, perseverance, unity, and the enduring grace of God in the life of the community."
+      }
+    ]
+  },
+  must_2: {
+    title: "Rural Resource & Training Centre (RRTC)",
+    sections: [
+      {
+        head: "Facilities & Layout",
+        body: "Located on the Pfutsero-Chetheba PWD road, RRTC Chokriba offers a range of facilities. The top floor houses a well-furnished Conference Hall and Computer Lab with colour printing facility and toilets. The first floor at road level, features a Farmers' Market, and rooms for care takers and resource persons, a store and toilets. The ground floor has two four-bedded rooms for guests and three six-bedded rooms for trainees, along with sufficient toilets and bathrooms. The basement consists of three kitchens, including two for small parties and one for large parties with firewood facilities."
+      },
+      {
+        head: "Staff & Youth Training",
+        body: "To supplement the facilities available in the main building, a separate building is also available for accommodation of the staff. Additionally, there is a Workstation in an adjacent building where youth are trained in wood carving and crafts."
+      },
+      {
+        head: "Technological Park",
+        body: "A Rural Technological Park is also located nearby, demonstrating sustainable horticulture and livestock rearing practices."
+      }
+    ]
+  },
+  must_3: {
+    title: "Rihuba Village",
+    sections: [
+      {
+        head: "Location & Landscape",
+        body: "Rihuba Village is a peaceful rural settlement located in Phek District under Chetheba Circle. It is mainly inhabited by tribal communities, particularly the Chakhesang Naga group. The village is surrounded by beautiful hills and lush greenery, reflecting the typical landscape of the district."
+      },
+      {
+        head: "Livelihood & Agriculture",
+        body: "Agriculture is the primary occupation, and many families depend on farming for their livelihood. Crops such as persimmon, kiwi, and a variety of vegetables are commonly grown."
+      },
+      {
+        head: "Community & Education",
+        body: "Rihuba has a close-knit community life where traditions, culture, and Christian faith play an important role in daily living. The village also has a comparatively high literacy rate, reflecting the community’s strong emphasis on education."
+      }
+    ]
+  },
+  tom: {
+    title: "Thipüzumi Outreach Mission (TOM)",
+    sections: [
+      {
+        head: "The Inception (1980)",
+        body: "In the mission movement, Thipüzu Baptist Church has been an active partner of the Chakhesang Mission Society. The Thipüzumi Outreach Mission (TOM) was incepted in 1980 under the theme, “Go into all the world and preach the Gospel to the whole creation” (Mark 16:15). TOM was established with the vision of uniting all Thipüzumi believers—both within the village and those living outside or abroad—in a shared commitment to mission work."
+      },
+      {
+        head: "A Milestone in Mission (1983)",
+        body: "On 2nd March 1983, at Phek, the Chakhesang Baptist Church Council (CBCC) officially recognized TOM’s proposal for independent sponsorship of a mission field. This milestone made TOM one of the first independent partners in the Chakhesang mission movement among the churches under CBCC. Through this step of faith, Thipüzu Baptist Church continues to uphold its calling to spread the Gospel and serve beyond its own community."
       }
     ]
   },
@@ -287,6 +358,15 @@ export const CONTENT_DATA: any = {
       {
         head: "The Five Clans: A Tapestry of Kinship",
         body: "The village is organized into five primary clans, each with its own traditional role in the village’s survival. One clan may be the traditional guardians of the water sources, while another specializes in the engineering of the terraces. This division of labor creates a state of 'Mandatory Interdependence'—no clan can survive without the others. This system of kinship extends beyond bloodlines; when a child is born in Thipuzu, they are celebrated by all five clans as a new soul for the village. Our census records are not just numbers; they are a map of a living, breathing organism that has survived for five hundred years through the power of collective identity. To be from Thipuzu is to belong to a tapestry that is far stronger than any individual thread."
+      }
+    ]
+  },
+  gallery: {
+    title: "Visual Archive: Thipüzu in Frames",
+    sections: [
+      {
+        head: "A Glimpse into the Ridge",
+        body: "Our gallery is a curated collection of moments captured across the seasons. From the mist-covered peaks to the vibrant harvest festivals, these images tell the story of a village that lives in harmony with time and terrain."
       }
     ]
   }

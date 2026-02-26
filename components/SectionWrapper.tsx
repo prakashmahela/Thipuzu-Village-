@@ -30,7 +30,7 @@ const SectionWrapper: React.FC<Props> = ({ id, title, subtitle, children, classN
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="heading-big text-5xl md:text-[10rem] mask-text"
+            className="heading-big text-4xl md:text-7xl mask-text"
           >
             {title}
           </motion.h2>

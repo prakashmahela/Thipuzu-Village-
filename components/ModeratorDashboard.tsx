@@ -224,6 +224,105 @@ const ModeratorDashboard: React.FC<Props> = ({ onLogout, onBackToHome, isLightMo
             </div>
           </div>
         )}
+
+        {activeTab === 'media' && (
+          <div className="space-y-8">
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className={`text-xl font-bold uppercase tracking-widest ${isLightMode ? 'text-black' : 'text-bone'}`}>
+                  Media Library
+                </h3>
+                <p className="text-[10px] opacity-40 mt-1">Manage gallery images and visual assets</p>
+              </div>
+              <div className="flex flex-col md:flex-row gap-4 w-full">
+                <input 
+                  type="text" 
+                  placeholder="Image Title..." 
+                  id="image-title-input"
+                  className={`flex-1 px-4 py-2 rounded-lg border text-xs ${isLightMode ? 'bg-white border-black/10' : 'bg-zinc-800 border-white/10 text-white'}`}
+                />
+                <input 
+                  type="text" 
+                  placeholder="Paste Image URL..." 
+                  id="image-url-input"
+                  className={`flex-[2] px-4 py-2 rounded-lg border text-xs ${isLightMode ? 'bg-white border-black/10' : 'bg-zinc-800 border-white/10 text-white'}`}
+                />
+                <button 
+                  onClick={() => {
+                    const titleInput = document.getElementById('image-title-input') as HTMLInputElement;
+                    const urlInput = document.getElementById('image-url-input') as HTMLInputElement;
+                    const title = titleInput.value.trim() || 'Untitled Archive';
+                    const url = urlInput.value.trim();
+                    if (url) {
+                      const stored = localStorage.getItem('thipuzu_gallery_images');
+                      const images = stored ? JSON.parse(stored) : [
+                        { url: "https://i.ibb.co/tMZ2xCJC/Whats-App-Image-2026-02-09-at-12-51-00-PM.jpg", title: "Village Panorama" },
+                        { url: "https://i.ibb.co/NdxZFrQq/Whats-App-Image-2026-02-09-at-12-50-59-PM-1.jpg", title: "Sacred Hearth" },
+                        { url: "https://i.ibb.co/zLKLMh4/Whats-App-Image-2026-02-09-at-12-50-58-PM.jpg", title: "Ancient Stones" },
+                        { url: "https://i.ibb.co/gZzskKT4/Whats-App-Image-2026-02-09-at-12-50-59-PM.jpg", title: "Mist over Ridge" },
+                        { url: "https://i.ibb.co/VYXKrqrc/Whats-App-Image-2026-02-09-at-12-50-56-PM.jpg", title: "Terrace Fields" },
+                        { url: "https://i.ibb.co/673nGx5J/Whats-App-Image-2026-02-09-at-12-50-55-PM.jpg", title: "Pentagon View" },
+                        { url: "https://i.ibb.co/XNj6pTF/Whats-App-Image-2026-02-09-at-12-50-54-PM.jpg", title: "Kiwi Orchards" },
+                        { url: "https://i.ibb.co/FbnJZSYR/Whats-App-Image-2026-02-09-at-12-50-46-PM.jpg", title: "Cultural Heritage" },
+                      ];
+                      
+                      // Handle migration if existing data is string array
+                      const normalized = images.map((item: any) => typeof item === 'string' ? { url: item, title: 'Untitled Archive' } : item);
+                      
+                      normalized.push({ url, title });
+                      localStorage.setItem('thipuzu_gallery_images', JSON.stringify(normalized));
+                      titleInput.value = '';
+                      urlInput.value = '';
+                      window.location.reload();
+                    }
+                  }}
+                  className="px-6 py-2 bg-gold text-obsidian text-[10px] font-bold uppercase tracking-widest rounded-lg flex items-center gap-2 shadow-lg shadow-gold/10 hover:shadow-gold/20 transition-all whitespace-nowrap"
+                >
+                  <Plus size={14} /> Add Image
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {(localStorage.getItem('thipuzu_gallery_images') ? JSON.parse(localStorage.getItem('thipuzu_gallery_images')!) : [
+                { url: "https://i.ibb.co/tMZ2xCJC/Whats-App-Image-2026-02-09-at-12-51-00-PM.jpg", title: "Village Panorama" },
+                { url: "https://i.ibb.co/NdxZFrQq/Whats-App-Image-2026-02-09-at-12-50-59-PM-1.jpg", title: "Sacred Hearth" },
+                { url: "https://i.ibb.co/zLKLMh4/Whats-App-Image-2026-02-09-at-12-50-58-PM.jpg", title: "Ancient Stones" },
+                { url: "https://i.ibb.co/gZzskKT4/Whats-App-Image-2026-02-09-at-12-50-59-PM.jpg", title: "Mist over Ridge" },
+                { url: "https://i.ibb.co/VYXKrqrc/Whats-App-Image-2026-02-09-at-12-50-56-PM.jpg", title: "Terrace Fields" },
+                { url: "https://i.ibb.co/673nGx5J/Whats-App-Image-2026-02-09-at-12-50-55-PM.jpg", title: "Pentagon View" },
+                { url: "https://i.ibb.co/XNj6pTF/Whats-App-Image-2026-02-09-at-12-50-54-PM.jpg", title: "Kiwi Orchards" },
+                { url: "https://i.ibb.co/FbnJZSYR/Whats-App-Image-2026-02-09-at-12-50-46-PM.jpg", title: "Cultural Heritage" },
+              ]).map((img: any, idx: number) => {
+                const imageUrl = typeof img === 'string' ? img : img.url;
+                const imageTitle = typeof img === 'string' ? 'Untitled Archive' : img.title;
+                
+                return (
+                  <div key={idx} className={`group relative aspect-square rounded-2xl overflow-hidden border ${isLightMode ? 'border-black/5' : 'border-white/5'} bg-black/5 flex flex-col`}>
+                    <img src={imageUrl} alt={imageTitle} className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+                    <div className="absolute inset-x-0 bottom-0 p-3 bg-black/60 backdrop-blur-sm transform translate-y-full group-hover:translate-y-0 transition-transform">
+                      <p className="text-[9px] text-white font-bold uppercase tracking-widest truncate">{imageTitle}</p>
+                    </div>
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                      <button 
+                        onClick={() => {
+                          const stored = localStorage.getItem('thipuzu_gallery_images');
+                          const images = stored ? JSON.parse(stored) : [];
+                          const filtered = images.filter((_: any, i: number) => i !== idx);
+                          localStorage.setItem('thipuzu_gallery_images', JSON.stringify(filtered));
+                          window.location.reload();
+                        }}
+                        className="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center hover:scale-110 transition-transform"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

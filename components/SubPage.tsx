@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
+import Gallery from './Gallery';
 
 interface Props {
   id: string;
@@ -46,7 +47,7 @@ const SubPage: React.FC<Props> = ({ id, data, onClose, isLightMode }) => {
           className="mb-48 border-l border-gold pl-12"
         >
           <span className="text-[9px] font-black text-gold/40 tracking-[1em] uppercase block mb-6">UNABRIDGED HISTORICAL MANIFESTO</span>
-          <h1 className={`heading-big text-5xl md:text-8xl leading-none mb-12 uppercase ${isLightMode ? 'text-black' : 'text-bone'}`}>
+          <h1 className={`heading-big text-3xl md:text-6xl leading-none mb-12 uppercase ${isLightMode ? 'text-black' : 'text-bone'}`}>
             {data.title}
           </h1>
           <div className={`text-[10px] uppercase tracking-[0.3em] font-light leading-relaxed ${isLightMode ? 'text-black/30' : 'text-bone/30'}`}>
@@ -56,28 +57,32 @@ const SubPage: React.FC<Props> = ({ id, data, onClose, isLightMode }) => {
 
         {/* Dense Typographic Content Area */}
         <div className="space-y-64">
-          {data.sections.map((sec, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 1 }}
-              className="space-y-12"
-            >
-              <div className="space-y-4">
-                <span className="text-[10px] text-gold/60 font-black tracking-[0.8em]">PARAGRAPH_RECORD_0{idx + 1}</span>
-                <h2 className="heading-big text-2xl md:text-5xl text-gold/90 uppercase tracking-widest leading-tight">
-                  {sec.head}
-                </h2>
-              </div>
-              <div className={`border-t pt-12 transition-colors duration-500 ${isLightMode ? 'border-black/5' : 'border-luxury/10'}`}>
-                 <p className={`text-lg md:text-2xl leading-[2] font-light text-justify transition-colors duration-500 ${isLightMode ? 'text-black/80' : 'text-bone/60'}`}>
-                   {sec.body}
-                 </p>
-              </div>
-            </motion.div>
-          ))}
+          {id === 'gallery' ? (
+            <Gallery isLightMode={isLightMode} mode="grid" />
+          ) : (
+            data.sections.map((sec, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1, duration: 1 }}
+                className="space-y-12"
+              >
+                <div className="space-y-4">
+                  <span className="text-[10px] text-gold/60 font-black tracking-[0.8em]">PARAGRAPH_RECORD_0{idx + 1}</span>
+                  <h2 className="heading-big text-xl md:text-3xl text-gold/90 uppercase tracking-widest leading-tight">
+                    {sec.head}
+                  </h2>
+                </div>
+                <div className={`border-t pt-12 transition-colors duration-500 ${isLightMode ? 'border-black/5' : 'border-luxury/10'}`}>
+                   <p className={`text-lg md:text-2xl leading-[2] font-light text-justify transition-colors duration-500 ${isLightMode ? 'text-black/80' : 'text-bone/60'}`}>
+                     {sec.body}
+                   </p>
+                </div>
+              </motion.div>
+            ))
+          )}
         </div>
 
         {/* Archival Terminal Footer */}

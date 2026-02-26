@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { 
   ArrowRight, ChevronRight, GraduationCap, Building2, 
   Sprout, Compass, Mountain, Users, Globe, Home,
-  Mail, Phone, MapPin
+  Mail, Phone, MapPin, Play, X
 } from 'lucide-react';
 import { SECTIONS, CONTENT_DATA } from './constants';
 import Navbar from './components/Navbar';
@@ -15,8 +15,96 @@ import Timeline from './components/Timeline';
 import ModeratorLogin from './components/ModeratorLogin';
 import ModeratorDashboard from './components/ModeratorDashboard';
 
+interface Place {
+  id: string;
+  name: string;
+  img: string | string[];
+}
+
+interface PlaceCardProps {
+  place: Place;
+  idx: number;
+  toggleSubPage: (id: string) => void;
+}
+
+const PlaceCard: React.FC<PlaceCardProps> = ({ place, idx, toggleSubPage }) => {
+  const image = Array.isArray(place.img) ? place.img[0] : place.img;
+
+  return (
+    <motion.div 
+      key={place.id}
+      whileHover={{ y: -10 }}
+      onClick={() => toggleSubPage(place.id)}
+      className={`aspect-[4/3] rounded-2xl overflow-hidden border border-luxury/20 relative group bg-luxury/5 cursor-pointer`}
+    >
+      <img 
+        src={image} 
+        alt={place.name}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        referrerPolicy="no-referrer"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6 pointer-events-none">
+        <span className="text-gold font-black text-[8px] tracking-[0.4em] mb-2 opacity-60">LANDMARK_0{idx + 1}</span>
+        <p className="text-white text-sm md:text-base font-medium tracking-wide">
+          {place.name}
+        </p>
+      </div>
+    </motion.div>
+  );
+};
+
+interface Video {
+  id: string;
+  title: string;
+  duration: string;
+  thumbnail: string;
+  videoUrl: string;
+}
+
+const VideoModal: React.FC<{ video: Video; onClose: () => void }> = ({ video, onClose }) => {
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-10"
+      onClick={onClose}
+    >
+      <motion.div 
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 z-20 flex items-center gap-3 px-4 py-2 rounded-full bg-gold text-obsidian hover:bg-white transition-all shadow-2xl group"
+        >
+          <span className="text-[10px] font-black uppercase tracking-widest">Close Player</span>
+          <X size={18} className="group-hover:rotate-90 transition-transform" />
+        </button>
+        <video 
+          src={video.videoUrl} 
+          controls 
+          autoPlay 
+          className="w-full h-full object-contain"
+          controlsList="nodownload"
+        >
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
+          <h3 className="text-white text-xl font-bold">{video.title}</h3>
+          <p className="text-gold/60 text-xs uppercase tracking-widest mt-1">Visual Archive Reel</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const App: React.FC = () => {
   const [activeSubPage, setActiveSubPage] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<Video | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLightMode, setIsLightMode] = useState(true); // Default to Light Mode
   const [isModerator, setIsModerator] = useState(false);
@@ -167,12 +255,28 @@ const App: React.FC = () => {
           >
             <Hero onNavigate={toggleSubPage} isLightMode={isLightMode} />
             
-            {/* Introduction Section */}
-            <SectionWrapper id="intro" title="About Thipuzu" subtitle="Historical Overview" className={`py-16 md:py-32 ${isLightMode ? 'bg-[#F8F7F2]' : 'bg-obsidian'}`}>
-              <div className="max-w-5xl">
+            {/* TOM Section */}
+            <SectionWrapper id="tom" title="Thipüzumi Outreach Mission (TOM)" subtitle="Global Calling" className={`py-16 md:py-32 ${isLightMode ? 'bg-[#F8F7F2]' : 'bg-obsidian'}`}>
+              <div className="max-w-5xl space-y-8">
                 <p className={`text-sm md:text-base leading-relaxed font-light ${isLightMode ? 'text-black/80' : 'text-bone/80'}`}>
-                  Nestled in the Phek district of Nagaland, Thipuzu is a historic Chakhesang Naga village that balances ancestral heritage with a forward-looking spirit. A living museum of Naga traditions, it is renowned for its strategic history, vibrant festivals, and intricate weaving. From symbolic monoliths and sacred prayer centers to breathtaking high-altitude terrace fields, Thipuzu offers a profound glimpse into the soul of Nagaland—a hidden gem for those seeking cultural depth and peace.
+                  In the mission movement, Thipüzu Baptist Church has been an active partner of the Chakhesang Mission Society. The Thipüzumi Outreach Mission (TOM) was incepted in 1980 under the theme, “Go into all the world and preach the Gospel to the whole creation” (Mark 16:15).
                 </p>
+                <p className={`text-sm md:text-base leading-relaxed font-light ${isLightMode ? 'text-black/80' : 'text-bone/80'}`}>
+                  TOM was established with the vision of uniting all Thipüzumi believers—both within the village and those living outside or abroad—in a shared commitment to mission work.
+                </p>
+                <p className={`text-sm md:text-base leading-relaxed font-light ${isLightMode ? 'text-black/80' : 'text-bone/80'}`}>
+                  On 2nd March 1983, at Phek, the Chakhesang Baptist Church Council (CBCC) officially recognized TOM’s proposal for independent sponsorship of a mission field. This milestone made TOM one of the first independent partners in the Chakhesang mission movement among the churches under CBCC.
+                </p>
+                <p className={`text-sm md:text-base leading-relaxed font-light ${isLightMode ? 'text-black/80' : 'text-bone/80'}`}>
+                  Through this step of faith, Thipüzu Baptist Church continues to uphold its calling to spread the Gospel and serve beyond its own community.
+                </p>
+                <button 
+                  onClick={() => toggleSubPage('tom')}
+                  className="group flex items-center gap-4 text-gold border-b border-gold/30 pb-2 hover:border-gold transition-all pt-4"
+                >
+                  <span className="uppercase tracking-widest text-[10px] md:text-xs font-bold">Explore Mission Records</span>
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform" />
+                </button>
               </div>
             </SectionWrapper>
 
@@ -186,7 +290,7 @@ const App: React.FC = () => {
             </SectionWrapper>
 
             {/* History Section */}
-            <SectionWrapper id="about" title="Our Essence" subtitle="XV Generations" className={`py-16 md:py-40 ${isLightMode ? 'bg-white' : ''}`}>
+            <SectionWrapper id="about" title="About Thipüzu" subtitle="Heritage & Legacy" className={`py-16 md:py-40 ${isLightMode ? 'bg-white' : ''}`}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-start">
                 <div className="lg:col-span-7 space-y-6 md:space-y-12">
                   <motion.h3 
@@ -198,7 +302,7 @@ const App: React.FC = () => {
                     “Where the clouds meet the ancestral stones of Phek.”
                   </motion.h3>
                   <p className={`text-base md:text-2xl font-light ${isLightMode ? 'text-black/60' : 'text-bone/60'} leading-relaxed max-w-2xl`}>
-                    For half a millennium, Thipuzu has served as the silent guardian of Chakhesang wisdom. Our ridge is not just a location, but a historical witness.
+                    For half a millennium, Thipüzu has served as the silent guardian of Chakhesang wisdom. Our ridge is not just a location, but a historical witness.
                   </p>
                   <div className="flex flex-wrap gap-8 md:gap-12">
                     <div>
@@ -210,7 +314,7 @@ const App: React.FC = () => {
                     onClick={() => toggleSubPage('about')}
                     className="group flex items-center gap-4 text-gold border-b border-gold/30 pb-2 hover:border-gold transition-all"
                   >
-                    <span className="uppercase tracking-widest text-[10px] md:text-xs font-bold">Open Origins Archive</span>
+                    <span className="uppercase tracking-widest text-[10px] md:text-xs font-bold">Open About Archive</span>
                     <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform" />
                   </button>
                 </div>
@@ -218,10 +322,21 @@ const App: React.FC = () => {
                   <div className={`aspect-[4/5] ${isLightMode ? 'bg-premiumBlue' : 'bg-sage-dark/10'} rounded-2xl overflow-hidden border border-luxury relative group shadow-2xl shadow-gold/5`}>
                     <iframe 
                       title="Thipuzu Village Location"
-                      className="w-full h-full border-0 pointer-events-none"
+                      className="w-full h-full border-0"
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14383.0!2d94.2704!3d25.6657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3747190000000000%3A0x0!2zMjXCsDM5JzU2LjgiTiA5NMKwMTYnMjEuMyJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                       loading="lazy"
                     ></iframe>
+                    <a 
+                      href="https://www.google.com/maps/place/Thip%C3%BCzu,+Nagaland+797108/@25.6657,94.2704,15z/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 z-10 bg-black/0 hover:bg-black/20 transition-colors flex items-center justify-center group"
+                    >
+                      <div className="bg-gold text-obsidian px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0 flex items-center gap-2 shadow-xl">
+                        <MapPin size={14} />
+                        View Large Map
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -257,31 +372,25 @@ const App: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   { id: 'place_kiwi', name: 'Kiwi & Allied Fruit Processing Unit', img: 'https://i.ibb.co/5XSFPcGR/Whats-App-Image-2026-02-20-at-8-44-10-PM.jpg' },
-                  { id: 'place_rihuba_church', name: 'Rihuba Baptist Church site', img: 'https://i.ibb.co/4wWfQDCx/Whats-App-Image-2026-02-20-at-8-46-55-PM.jpg' },
                   { id: 'place_eco_park', name: 'Mini Eco-Tourism Park, Jüdü', img: 'https://i.ibb.co/Y7Z8PVrK/Whats-App-Image-2026-02-20-at-8-48-37-PM.jpg' },
-                  { id: 'place_horticulture', name: 'Horticulture Farm, Suso-Bostu', img: 'https://i.ibb.co/1f8DLWdh/Whats-App-Image-2026-02-20-at-8-49-53-PM.jpg' },
-                  { id: 'place_baptist_church', name: 'Thipüzu Baptist Church', img: 'https://i.ibb.co/zW7XMXQm/Whats-App-Image-2026-02-20-at-8-51-19-PM.jpg' },
-                  { id: 'place_rihuba', name: 'Rihuba', img: 'https://i.ibb.co/NgJWphBS/Whats-App-Image-2026-02-20-at-8-53-32-PM.jpg' }
+                  { id: 'place_horticulture', name: 'Horticulture Farm, Süsabotsü', img: 'https://i.ibb.co/1f8DLWdh/Whats-App-Image-2026-02-20-at-8-49-53-PM.jpg' },
+                  { id: 'place_theyeyi', name: 'Theyeyi Zhetu', img: 'https://i.ibb.co/hx8MQrnK/Whats-App-Image-2026-02-23-at-3-29-38-PM.jpg' },
+                  { id: 'place_chumevinyi', name: 'Chümevinyi Peak', img: 'https://i.ibb.co/m5wvn5W4/Whats-App-Image-2026-02-23-at-4-19-11-PM.jpg' },
+                  { id: 'place_rova', name: 'Rova Tsüzhütu', img: 'https://i.ibb.co/20QytNbd/Whats-App-Image-2026-02-23-at-4-20-56-PM.jpg' }
                 ].map((place, idx) => (
-                  <motion.div 
-                    key={place.id}
-                    whileHover={{ y: -10 }}
-                    onClick={() => toggleSubPage(place.id)}
-                    className={`aspect-[4/3] rounded-2xl overflow-hidden border border-luxury/20 relative group bg-luxury/5 cursor-pointer`}
-                  >
-                    <img 
-                      src={place.img} 
-                      alt={place.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
-                      <span className="text-gold font-black text-[8px] tracking-[0.4em] mb-2 opacity-60">LANDMARK_0{idx + 1}</span>
-                      <p className="text-white text-sm md:text-base font-medium tracking-wide">
-                        {place.name}
-                      </p>
-                    </div>
-                  </motion.div>
+                  <PlaceCard key={place.id} place={place} idx={idx} toggleSubPage={toggleSubPage} />
+                ))}
+              </div>
+            </SectionWrapper>
+
+            <SectionWrapper id="must-visit" title="Must Visit Places" subtitle="Top Recommendations" className={isLightMode ? 'bg-[#FDFCF8]' : 'bg-[#050505]'}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {[
+                  { id: 'must_1', name: 'Thipüzumi Baptist Church', img: 'https://i.ibb.co/8CrcdHS/Whats-App-Image-2026-02-22-at-10-12-07-PM-2.jpg' },
+                  { id: 'must_2', name: 'Rural Resource & Training Centre (RRTC)', img: 'https://i.ibb.co/1tffDGQg/Whats-App-Image-2026-02-25-at-9-48-43-AM.jpg' },
+                  { id: 'must_3', name: 'Rihuba Village', img: 'https://i.ibb.co/1JbcLC3g/Whats-App-Image-2026-02-25-at-9-48-29-AM.jpg' }
+                ].map((place, idx) => (
+                  <PlaceCard key={place.id} place={place} idx={idx} toggleSubPage={toggleSubPage} />
                 ))}
               </div>
             </SectionWrapper>
@@ -305,6 +414,41 @@ const App: React.FC = () => {
                     </p>
                     <div className="flex items-center gap-3 text-[10px] uppercase tracking-widest text-gold font-bold">
                       Explore Record <ArrowRight size={14} />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </SectionWrapper>
+
+            {/* Visual Archive Section */}
+            <SectionWrapper id="visual-archive" title="Visual Archive" subtitle="Village Reels" className={isLightMode ? 'bg-white' : 'bg-[#050505]'}>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { id: 'vid_1', title: 'Traditional Hearth Rituals', duration: '03:45', thumbnail: 'https://picsum.photos/seed/thipuzu1/800/600', videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' },
+                  { id: 'vid_2', title: 'Terrace Engineering', duration: '05:20', thumbnail: 'https://picsum.photos/seed/thipuzu2/800/600', videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
+                  { id: 'vid_3', title: 'Pentagon Church Dedication', duration: '08:12', thumbnail: 'https://picsum.photos/seed/thipuzu3/800/600', videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+                  { id: 'vid_4', title: 'Kiwi Harvest Season', duration: '04:30', thumbnail: 'https://picsum.photos/seed/thipuzu4/800/600', videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' }
+                ].map((vid, idx) => (
+                  <motion.div 
+                    key={vid.id}
+                    whileHover={{ y: -5 }}
+                    onClick={() => setActiveVideo(vid)}
+                    className="group relative aspect-video rounded-2xl overflow-hidden border border-luxury/20 bg-luxury/5 cursor-pointer"
+                  >
+                    <img 
+                      src={vid.thumbnail} 
+                      alt={vid.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-gold/90 text-obsidian flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform shadow-xl">
+                        <Play size={20} fill="currentColor" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                      <p className="text-white text-xs font-bold mb-1">{vid.title}</p>
+                      <p className="text-gold/60 text-[10px] uppercase tracking-widest">{vid.duration}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -349,10 +493,10 @@ const App: React.FC = () => {
             </SectionWrapper>
 
             {/* Culture */}
-            <SectionWrapper id="culture" title="Fabric of Life" subtitle="Heritage" className={isLightMode ? 'bg-white' : 'bg-[#050505]'}>
+            <SectionWrapper id="culture" title="Festival including Religious festival Celebrations" subtitle="Tradition & Faith" className={isLightMode ? 'bg-white' : 'bg-[#050505]'}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
                 <div className="space-y-8 md:space-y-12">
-                   <h3 className="heading-big text-4xl md:text-6xl mask-text">Identity<br/>Defined</h3>
+                   <h3 className="heading-big text-4xl md:text-6xl mask-text">Annual<br/>Rhythms</h3>
                    <div className="space-y-6 md:space-y-8">
                      {CONTENT_DATA.culture.festivals.map((f: string, i: number) => (
                        <motion.div 
@@ -486,6 +630,15 @@ const App: React.FC = () => {
             </footer>
           </motion.main>
         ) : null}
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
+        {activeVideo && (
+          <VideoModal 
+            video={activeVideo} 
+            onClose={() => setActiveVideo(null)} 
+          />
+        )}
       </AnimatePresence>
 
       <AnimatePresence mode="wait">

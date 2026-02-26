@@ -50,7 +50,7 @@ const DemographicStats: React.FC<Props> = ({ isLightMode }) => {
 
             {/* Content Container */}
             <div className="relative z-10 text-center space-y-2">
-              <h4 className={`heading-big text-5xl md:text-8xl transition-colors duration-500 ${isLightMode ? 'text-black group-hover:text-gold' : 'text-bone group-hover:text-gold'}`}>
+              <h4 className={`heading-big text-3xl md:text-6xl transition-colors duration-500 ${isLightMode ? 'text-black group-hover:text-gold' : 'text-bone group-hover:text-gold'}`}>
                 {stat.value}
               </h4>
               <p className="text-[8px] md:text-[12px] uppercase tracking-[0.4em] font-black text-gold/60 group-hover:text-gold transition-colors duration-500">
@@ -65,7 +65,7 @@ const DemographicStats: React.FC<Props> = ({ isLightMode }) => {
       <div className="w-full max-w-4xl mx-auto space-y-16">
         <div className="text-center space-y-6">
           <div className="h-px w-24 bg-gold/30 mx-auto" />
-          <h4 className={`heading-big text-2xl md:text-5xl uppercase tracking-wider ${isLightMode ? 'text-black/80' : 'text-bone/80'}`}>
+          <h4 className={`heading-big text-xl md:text-3xl uppercase tracking-wider ${isLightMode ? 'text-black/80' : 'text-bone/80'}`}>
             Socio-Economic Distribution
           </h4>
         </div>

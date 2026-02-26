@@ -27,7 +27,7 @@ const Timeline: React.FC<Props> = ({ onNavigate, isLightMode }) => {
           onClick={() => onNavigate?.(item.id)}
         >
           <div className="space-y-4">
-            <span className={`heading-big text-3xl md:text-5xl transition-colors block ${isLightMode ? 'text-black/10 group-hover:text-gold' : 'text-gold/40 group-hover:text-gold'}`}>
+            <span className={`heading-big text-2xl md:text-3xl transition-colors block ${isLightMode ? 'text-black/10 group-hover:text-gold' : 'text-gold/40 group-hover:text-gold'}`}>
               {item.year}
             </span>
             <div className="space-y-4 max-w-2xl">

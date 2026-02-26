@@ -16,8 +16,17 @@ const Navbar: React.FC<Props> = ({ onMenuToggle, isMenuOpen, onNavigate, isLight
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100]">
       {/* Main Header Bar */}
-      <div className={`h-20 md:h-24 backdrop-blur-2xl border-b border-luxury/10 px-6 md:px-12 transition-colors duration-500 ${isLightMode ? 'bg-white/95' : 'bg-obsidian/95'}`}>
-        <div className="max-w-[1400px] mx-auto h-full flex items-center justify-between">
+      <div className={`h-20 md:h-24 backdrop-blur-2xl border-b border-luxury/10 px-6 md:px-12 transition-colors duration-500 relative overflow-hidden ${isLightMode ? 'bg-white/80' : 'bg-obsidian/80'}`}>
+        {/* Background Image for Header */}
+        <div className="absolute inset-0 z-[-1] opacity-10">
+          <img 
+            src="https://i.ibb.co/ynCRv9Fq/Whats-App-Image-2026-02-22-at-10-08-35-PM-2.jpg" 
+            alt="Header Background" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div className="max-w-[1400px] mx-auto h-full flex items-center justify-between relative z-10">
           <div 
             className="flex items-center gap-4 cursor-pointer group" 
             onClick={() => window.scrollTo({top:0, behavior:'smooth'})}
@@ -75,6 +84,21 @@ const Navbar: React.FC<Props> = ({ onMenuToggle, isMenuOpen, onNavigate, isLight
             </div>
 
             <div className="flex flex-col gap-4 w-full max-w-xs mx-auto">
+              <motion.button
+                onClick={() => {
+                  onNavigate(null);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className={`group flex items-center justify-between py-4 border-b ${isLightMode ? 'border-black/5' : 'border-white/5'}`}
+              >
+                <span className={`text-3xl heading-big group-hover:text-gold transition-all mask-text ${isLightMode ? 'text-black' : 'text-bone'}`}>
+                  Home
+                </span>
+                <span className="text-gold opacity-20 group-hover:opacity-100 transition-opacity">00</span>
+              </motion.button>
+
               {SECTIONS.map((s, idx) => (
                 <motion.button
                   key={s.id}
